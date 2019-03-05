@@ -1,0 +1,359 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{hyperref}  % for hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\usepackage{listings}  % for showing code
+ 
+\title{Going From C++ to Python}
+\author{Aaron Kaloti, VP of CS Tutoring Club in Winter 2019}
+\date{March 5, 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This is a guide to introductory Python 3 intended for those with a C++ background. It reviews the differences between C++ and Python 3 in introductory concepts such as conditional statements, strings, and functions. It is intended to make our UC Davis Computer Science tutors more comfortable teaching the introductory Python courses -- ECS 32A, 32B, and 36A -- newly offered by UC Davis, as our school shifts from teaching C/C++ at the introductory level to teaching Python.
+
+\section{(Quickly) Setting Up Python}
+\textbf{Don't have Python 3?} Here are two solutions:
+\begin{enumerate}
+    \item Python 3 is already on the CSIF.
+    \item Download Python3 from \href{https://www.python.org/downloads/}{here}. You may wish to download Python IDLE, to have a GUI (if you don't prefer using the terminal). 
+\end{enumerate}
+
+\section{Running a Python Program}
+\begin{itemize}
+    \item Run a Python program like so, using the `python3` command. (If you're using IDLE, then do Run Module.) \textbf{Python is an interpreted language -- no compiler needed.}
+    \begin{lstlisting}[language=bash]
+    aaron123@ad3.ucdavis.edu@pc25:~$ cat hello-world.py 
+        def do_stuff():
+            print("I did stuff")
+        
+        # Call the function we just defined.
+        do_stuff()
+    aaron123@ad3.ucdavis.edu@pc25:~$ python3 hello-world.py 
+    I did stuff
+    aaron123@ad3.ucdavis.edu@pc25:~$ 
+    \end{lstlisting}
+    \begin{itemize}
+        \item Note that we don't do `python hello-world.py`, as on the CSIF, `python` would run Python 2 instead of Python 3.
+    \end{itemize}
+    \item Use Interpreter Mode to try out things in Python.
+    \begin{lstlisting}[language=bash]
+    aaron123@ad3.ucdavis.edu@pc25:~$ python3
+    Python 3.6.7 (default, Oct 22 2018, 11:32:17) 
+    [GCC 8.2.0] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> a = 3
+    >>> a
+    3
+    >>> b = a
+    >>> b
+    3
+    >>> quit()
+    aaron123@ad3.ucdavis.edu@pc25:~$ 
+    \end{lstlisting}
+\end{itemize}
+
+\section{General Differences}
+\begin{itemize}
+    \item Lines don't end in semi-colons.
+    \item Types of variables and function parameters aren't explicitly specified.
+    \item Python has automatic garbage collection and thus will "free" your no-longer-needed variables for you, so there's no malloc()/free() or new/delete.
+    \item Comments are indicated by # instead of //.
+\end{itemize}
+
+\section{Numbers and Arithmetic}
+\begin{itemize}
+    \item +, -, *, and \% are the same.
+    \item Unlike in C++, / doesn't truncate in Python when both operands are integers. You must use // to cause truncation.
+    \begin{lstlisting}[language=Python]
+    >>> 3 / 2
+    1.5
+    >>> 3 // 2
+    1
+    >>> 
+    \end{lstlisting}
+    \item Use ** for exponentiation.
+    \begin{lstlisting}[language=Python]
+    >>> 5 ** 2  # 5 squared
+    25
+    \end{lstlisting}
+
+\end{itemize}
+
+\section{Standard Input/Output}
+\begin{itemize}
+    \item Use print() to print to standard output.
+        \begin{itemize}
+        \item For fans of C++'s printf():
+        \begin{lstlisting}
+        >>> print("{} says {}".format("Aaron","hi"))
+        Aaron says hi
+        \end{lstlisting}
+        \end{itemize}
+    \item Use input() for basic standard input.
+    \begin{lstlisting}
+    >>> name = input("Enter your name: ")
+    Enter your name: Aaron
+    >>> name
+    'Aaron'
+    >>> 
+    \end{lstlisting}
+\end{itemize}
+
+\section{Lists}
+\begin{itemize}
+    \item Lists in Python are arrays in C++, but you needn't do any special allocation stuff. The major list operations (access, length, splicing, concatenation, modification, append, delete) are demonstrated:
+    \item Define a list.
+    \begin{lstlisting}
+    >>> mylist = ['a','b','c','d','e']  # list of characters
+    \end{lstlisting}
+    \item Access element of a list.
+    \begin{lstlisting}
+    >>> mylist[0]  # Python uses zero-based indexing like C++
+    'a'
+    >>> mylist[4]
+    'e'
+    \end{lstlisting}
+    \item Access element of a list, starting from the back.
+    \begin{lstlisting}
+    >>> mylist[-1]  # get first element from back
+    'e'
+    >>> mylist[-2]
+    'd'
+    \end{lstlisting}
+    \item Get length of a list.
+    \begin{lstlisting}
+    >>> len(mylist)  # get length of list
+    5
+    \end{lstlisting}
+    \item Splice a sublist from the list.
+    \begin{lstlisting}
+    >>> mylist[0:2]  # splice from index 0 to before index 2
+    ['a', 'b']
+    >>> mylist[1:4]  # splice from index 1 to before index 4
+    ['b', 'c', 'd']
+    >>> mylist[2:]  # splice from index 2 to end
+    ['c', 'd', 'e']
+    >>> mylist[-2:]  # splice from second-to-last element onwards
+    ['d', 'e']
+    \end{lstlisting}
+    \item Concatenate two lists.
+    \begin{lstlisting}
+    >>> ['t','u','v'] + ['w','x']  # concatenation
+    ['t', 'u', 'v', 'w', 'x']
+    \end{lstlisting}
+    \item Modify a specific list element.
+    \begin{lstlisting}
+    >>> mylist[2] = 'x'  # modification: replace 'c' with 'x'
+    >>> mylist
+    ['a', 'b', 'x', 'd', 'e']
+    \end{lstlisting}
+    \item Append an element to a list.
+    \begin{lstlisting}
+    >>> mylist.append('z')  # append 'z' to back of list
+    >>> mylist
+    ['a', 'b', 'x', 'd', 'e', 'z']
+    \end{lstlisting}
+    \item Delete an element from the list.
+    \begin{lstlisting}
+    >>> del mylist[1]  # delete 'b' from list
+    >>> mylist
+    ['a', 'x', 'd', 'e', 'z']
+    \end{lstlisting}
+    \item Get the type of this list.
+    \begin{lstlisting}
+    >>> type(mylist)
+    <class 'list'>
+    \end{lstlisting}
+\end{itemize}
+
+\section{Strings}
+\begin{itemize}
+    \item Strings in Python are strings in C++, but Python has no characters (a character is a string of length 1).
+    \item No difference between single quote and double quote.
+    \item Ignoring modification operations, strings and lists have the same operations.
+    \item Define a string.
+    \begin{lstlisting}
+    >>> mystr = "aaron kaloti"
+    \end{lstlisting}
+    \item Access element of a string.
+    \begin{lstlisting}
+    >>> mystr[0]  # again, zero-based indexing
+    'a'
+    >>> mystr[-2]  # second-to-last character
+    't'
+    \end{lstlisting}
+    \item Get length of a string.
+    \begin{lstlisting}
+    >>> len(mystr)
+    12
+    \end{lstlisting}
+    \item Splice a substring from the string.
+    \begin{lstlisting}
+    >>> mystr[:5]  # splice to get my first name
+    'aaron'
+    >>> mystr[6:]  # splice to get my last name
+    'kaloti'
+    \end{lstlisting}
+    \item Concatenate two strings.
+    \begin{lstlisting}
+    >>> "concat" + "enation"
+    'concatenation'
+    \end{lstlisting}
+    \item Get the type of this string.
+    \begin{lstlisting}
+    >>> type(mystr)
+    <class 'str'>
+    \end{lstlisting}
+    \item IMPORTANT: In Python, we call strings "immutable". This means that, unlike with a list, \textbf{you can't modify an individual element in a string}. If you want to change a string, you must use concatenation (to create a new string).
+    \begin{lstlisting}
+    >>> mystr
+    'aaron kaloti'
+    >>> mystr[1] = 'd'
+    >>> mystr[3] = 'i' 
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: 'str' object does not support item assignment
+    >>> mystr = mystr[:3] + 'i' + mystr[4:]
+    >>> mystr
+    'aarin kaloti'
+    \end{lstlisting}
+\end{itemize}
+
+\section{Conditional Statements}
+\begin{itemize}
+    \item If/else statements are the same, besides syntactic differences (no parentheses around the condition, condition ends with a colon, indentation indicates the body of the if/else, and we use "elif" instead of "else if"):
+    \begin{lstlisting}
+    >>> x = 8
+    >>> if x < 0:
+    ...     print('x is negative')
+    ... elif x == 0:
+    ...     print('x is zero')
+    ... else:
+    ...     print('x is positive')
+    ... 
+    x is positive
+    >>> 
+    \end{lstlisting}
+\end{itemize}
+
+\section{Iteration}
+\begin{itemize}
+    \item While loops are the same, besides minor syntactic differences:
+    \begin{lstlisting}
+    >>> mylist = ['dog','cat','mouse']
+    >>> i = 0
+    >>> while i < len(mylist):
+    ...     print(mylist[i])
+    ...     i += 1
+    ... 
+    dog
+    cat
+    mouse
+    >>> 
+    \end{lstlisting}
+    \item For loop to iterate across a range of values (here, the variable \textbf{i} needn't be initialized prior):
+    \begin{lstlisting}
+    >>> for i in range(2,6):  # last value (6) isn't included
+    ...     print(i)
+    ... 
+    2
+    3
+    4
+    5
+    >>> for i in range(3):  # range starts at 0 if only give one value
+    ...     print(i)
+    ... 
+    0
+    1
+    2
+    >>> 
+    \end{lstlisting}
+    \item For loop to iterate across the values in a list:
+    \begin{lstlisting}
+    >>> people = ['Aaron','Aakash','Matthew']
+    >>> for person in people:
+    ...     print(person)
+    ... 
+    Aaron
+    Aakash
+    Matthew
+    >>>
+    \end{lstlisting}
+    \begin{itemize}
+        \item Note that when using this syntax, we can't change the values in the list.
+        \begin{lstlisting}
+        >>> people = ['Aaron','Aakash','Matthew']
+        >>> for person in people:
+        ...     person = "Alex"
+        ... 
+        >>> people  # note that the list is unaffected
+        ['Aaron', 'Aakash', 'Matthew']
+        >>> 
+        \end{lstlisting}
+    \end{itemize}
+    \item \textbf{break} and \textbf{continue} work the same.
+\end{itemize}
+
+\section{Functions}
+\begin{itemize}
+    \item Types of function parameters aren't specified.
+    \item No return type is specified, so a function can return different types of values (or in some cases, no value at all).
+    \item Here is an example to illustrate syntactic differences:
+    \begin{lstlisting}
+    >>> def isEven(val):
+    ...     if val % 2 == 0:
+    ...             return True
+    ...     else:
+    ...             return False
+    ... 
+    >>> isEven(3)
+    False
+    >>> isEven(4)
+    True
+    >>> 
+    \end{lstlisting}
+    \item Default argument values:
+    \begin{lstlisting}
+    >>> def returnInput(val=8):
+    ...     return val
+    ... 
+    >>> returnInput(3)
+    3
+    >>> returnInput()  # use default argument
+    8
+    >>> 
+    \end{lstlisting}
+\end{itemize}
+
+\section{Tuples}
+
+\section{Dictionaries}
+
+\section{File Input/Output}
+\begin{itemize}
+\end{itemize}
+
+\section{Command-line arguments}
+
+\section{Exceptions}
+
+
+\section{Classes}
+\begin{itemize}
+    \item NOTE: User-defined classes shouldn't come up in ECS 32A or 36A, but they do come up briefly in Kurt Eiselt's ECS 32B. (He doesn't cover inheritance, but if a future ECS 32B instructor does, I'll update this guide.)
+\end{itemize}
+
+\end{document}
+
