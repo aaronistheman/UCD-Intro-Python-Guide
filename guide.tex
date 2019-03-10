@@ -5,12 +5,12 @@
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
-    filecolor=magenta,
+    filecolor=magenta,      
     urlcolor=cyan,
 }
 
 \usepackage{listings}  % for showing code
-
+ 
 \title{Going From C++ to Python}
 \author{Aaron Kaloti, VP of CS Tutoring Club in Winter 2019}
 \date{March 5, 2019}
@@ -30,21 +30,21 @@ This is a guide to introductory Python 3 intended for those with a C++ backgroun
 \textbf{Don't have Python 3?} Here are two solutions:
 \begin{enumerate}
     \item Python 3 is already on the CSIF.
-    \item Download Python3 from \href{https://www.python.org/downloads/}{here}. You may wish to download Python IDLE, to have a GUI (if you don't prefer using the terminal).
+    \item Download Python3 from \href{https://www.python.org/downloads/}{here}. You may wish to download Python IDLE, to have a GUI (if you don't prefer using the terminal). 
 \end{enumerate}
 
 \section{Running a Python Program}
 \begin{itemize}
     \item Run a Python program like so, using the `python3` command. (If you're using IDLE, then do Run Module.) \textbf{Python is an interpreted language -- no compiler needed.}
     \begin{lstlisting}[language=bash]
-    aaron123@ad3.ucdavis.edu@pc25:~$ cat hello-world.py
+    aaron123@ad3.ucdavis.edu@pc25:~$ cat hello-world.py 
     def do_stuff():
         print("I did stuff")
     # Call the function we just defined.
     do_stuff()
-    aaron123@ad3.ucdavis.edu@pc25:~$ python3 hello-world.py
+    aaron123@ad3.ucdavis.edu@pc25:~$ python3 hello-world.py 
     I did stuff
-    aaron123@ad3.ucdavis.edu@pc25:~$
+    aaron123@ad3.ucdavis.edu@pc25:~$ 
     \end{lstlisting}
     \begin{itemize}
         \item Note that we don't do `python hello-world.py`, as on the CSIF, `python` would run Python 2 instead of Python 3.
@@ -52,7 +52,7 @@ This is a guide to introductory Python 3 intended for those with a C++ backgroun
     \item Use Interpreter Mode to try out things in Python.
     \begin{lstlisting}[language=bash]
     aaron123@ad3.ucdavis.edu@pc25:~$ python3
-    Python 3.6.7 (default, Oct 22 2018, 11:32:17)
+    Python 3.6.7 (default, Oct 22 2018, 11:32:17) 
     [GCC 8.2.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> a = 3
@@ -62,7 +62,7 @@ This is a guide to introductory Python 3 intended for those with a C++ backgroun
     >>> b
     3
     >>> quit()
-    aaron123@ad3.ucdavis.edu@pc25:~$
+    aaron123@ad3.ucdavis.edu@pc25:~$ 
     \end{lstlisting}
 \end{itemize}
 
@@ -85,13 +85,15 @@ In Python:
     1.5
     >>> 3 // 2
     1
-    >>>
+    >>> 
     \end{lstlisting}
     \item Use ** for exponentiation.
     \begin{lstlisting}[language=Python]
     >>> 5 ** 2  # 5 squared
     25
     \end{lstlisting}
+    \item Prefix (++a) and postfix (a++) increments don't exist. Use a += 1 instead. (Note: Unexpectedly, ++a is a valid operation but DOES NOTHING.) 
+    \item 
 
 \end{itemize}
 
@@ -111,7 +113,7 @@ In Python:
     Enter your name: Aaron
     >>> name
     'Aaron'
-    >>>
+    >>> 
     \end{lstlisting}
 \end{itemize}
 
@@ -226,7 +228,7 @@ In Python:
     >>> mystr
     'aaron kaloti'
     >>> mystr[1] = 'd'
-    >>> mystr[3] = 'i'
+    >>> mystr[3] = 'i' 
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     TypeError: 'str' object does not support item assignment
@@ -248,10 +250,11 @@ In Python:
     ...     print('x is zero')
     ... else:
     ...     print('x is positive')
-    ...
+    ... 
     x is positive
-    >>>
+    >>> 
     \end{lstlisting}
+    \item "and" instead of "&&". "or" instead of "||". For negation, statements like "a != b" still work, but "not a == b" is allowed too.
 \end{itemize}
 
 \section{Iteration}
@@ -263,35 +266,35 @@ In Python:
     >>> while i < len(mylist):
     ...     print(mylist[i])
     ...     i += 1
-    ...
+    ... 
     dog
     cat
     mouse
-    >>>
+    >>> 
     \end{lstlisting}
     \item Range-based for loop: for loop to iterate across a range of values (here, the variable \textbf{i} needn't be initialized prior):
     \begin{lstlisting}
     >>> for i in range(2,6):  # last value (6) isn't included
     ...     print(i)
-    ...
+    ... 
     2
     3
     4
     5
     >>> for i in range(3):  # range starts at 0 if only give one value
     ...     print(i)
-    ...
+    ... 
     0
     1
     2
-    >>>
+    >>> 
     \end{lstlisting}
     \item For loop to iterate across the values in a list:
     \begin{lstlisting}
     >>> people = ['Aaron','Aakash','Matthew']
     >>> for person in people:
     ...     print(person)
-    ...
+    ... 
     Aaron
     Aakash
     Matthew
@@ -303,10 +306,10 @@ In Python:
         >>> people = ['Aaron','Aakash','Matthew']
         >>> for person in people:
         ...     person = "Alex"
-        ...
+        ... 
         >>> people  # note that the list is unaffected
         ['Aaron', 'Aakash', 'Matthew']
-        >>>
+        >>> 
         \end{lstlisting}
     \end{itemize}
     \item \textbf{break} and \textbf{continue} work the same.
@@ -323,23 +326,23 @@ In Python:
     ...             return True
     ...     else:
     ...             return False
-    ...
+    ... 
     >>> isEven(3)
     False
     >>> isEven(4)
     True
-    >>>
+    >>> 
     \end{lstlisting}
     \item Default argument values:
     \begin{lstlisting}
     >>> def returnInput(val=8):
     ...     return val
-    ...
+    ... 
     >>> returnInput(3)
     3
     >>> returnInput()  # use default argument
     8
-    >>>
+    >>> 
     \end{lstlisting}
 \end{itemize}
 
@@ -354,7 +357,7 @@ In Python:
     >>> t = 8,5.3,'blah'  # you might see it without the parentheses
     >>> t
     (8, 5.3, 'blah')
-    >>>
+    >>> 
     \end{lstlisting}
     \item Access element in a tuple.
     \begin{lstlisting}
@@ -389,7 +392,7 @@ In Python:
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     TypeError: 'tuple' object does not support item assignment
-    >>>
+    >>> 
     \end{lstlisting}
     \item You may hear a Python tuple be called a "sequence data type", since it supports indexing.
 \end{itemize}
@@ -436,7 +439,7 @@ In Python:
     >>> d[4] = 8
     >>> d
     {'apple': 33, 'teehee': 21, 'blah': 'hi', 4: 8}
-    >>>
+    >>> 
     \end{lstlisting}
     \item Get length:
     \begin{lstlisting}
@@ -453,7 +456,7 @@ In Python:
     \begin{lstlisting}
     >>> for k in d:
     ...     print(k,d[k])
-    ...
+    ... 
     apple 33
     blah hi
     4 8
@@ -462,7 +465,7 @@ In Python:
     \begin{lstlisting}
     >>> for k,v in d.items():
     ...     print(k,v)
-    ...
+    ... 
     apple 33
     blah hi
     4 8
@@ -473,7 +476,7 @@ In Python:
 \begin{itemize}
     \item Opening a file, reading all of it, and closing it:
     \begin{lstlisting}
-    aaron123@ad3.ucdavis.edu@pc25:~$ cat poem.txt
+    aaron123@ad3.ucdavis.edu@pc25:~$ cat poem.txt 
     There once was a man from Peru
     Who dreamed he was eating his shoe.
     He woke up with a fright
@@ -502,9 +505,9 @@ In Python:
     4
     >>> fw.close()
     >>> quit()
-    aaron123@ad3.ucdavis.edu@pc25:~$ cat poem.txt
+    aaron123@ad3.ucdavis.edu@pc25:~$ cat poem.txt 
     nah
-    aaron123@ad3.ucdavis.edu@pc25:~$
+    aaron123@ad3.ucdavis.edu@pc25:~$ 
     \end{lstlisting}
     \item Use 'r+', NOT 'rw', to open a file for reading and writing.
 \end{itemize}
@@ -513,17 +516,17 @@ In Python:
 \begin{itemize}
     \item Minor syntactic differences, demonstrated below. Python has no argc; use len(sys.argv) instead.
     \begin{lstlisting}
-    aaron123@ad3.ucdavis.edu@pc25:~$ cat print-args.py
+    aaron123@ad3.ucdavis.edu@pc25:~$ cat print-args.py 
     import sys
     print("Arguments: ", sys.argv)
     print("Number of arguments: ", len(sys.argv))
     aaron123@ad3.ucdavis.edu@pc25:~$ python3 print-args.py aaron kaloti
     Arguments:  ['print-args.py', 'aaron', 'kaloti']
     Number of arguments:  3
-    aaron123@ad3.ucdavis.edu@pc25:~$ python3 print-args.py
+    aaron123@ad3.ucdavis.edu@pc25:~$ python3 print-args.py 
     Arguments:  ['print-args.py']
     Number of arguments:  1
-    aaron123@ad3.ucdavis.edu@pc25:~$
+    aaron123@ad3.ucdavis.edu@pc25:~$ 
     \end{lstlisting}
 \end{itemize}
 
@@ -537,11 +540,11 @@ In Python:
     ...             break
     ...     except ValueError:
     ...             print("Oops!  That was no valid number.  Try again...")
-    ...
+    ... 
     Please enter a number: abc
     Oops!  That was no valid number.  Try again...
     Please enter a number: 5
-    >>>
+    >>> 
     \end{lstlisting}
 \end{itemize}
 
