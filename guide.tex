@@ -38,10 +38,10 @@ This is a guide to introductory Python 3 intended for those with a C++ backgroun
     \item Run a Python program like so, using the `python3` command. (If you're using IDLE, then do Run Module.) \textbf{Python is an interpreted language -- no compiler needed.}
     \begin{lstlisting}[language=bash]
     aaron123@ad3.ucdavis.edu@pc25:~$ cat hello-world.py 
-    def do_stuff():
-        print("I did stuff")
-    # Call the function we just defined.
-    do_stuff()
+        def do_stuff():
+            print("I did stuff")
+        # Call the function we just defined.
+        do_stuff()
     aaron123@ad3.ucdavis.edu@pc25:~$ python3 hello-world.py 
     I did stuff
     aaron123@ad3.ucdavis.edu@pc25:~$ 
@@ -93,7 +93,6 @@ In Python:
     25
     \end{lstlisting}
     \item Prefix (++a) and postfix (a++) increments don't exist. Use a += 1 instead. (Note: Unexpectedly, ++a is a valid operation but DOES NOTHING.) 
-    \item 
 
 \end{itemize}
 
@@ -254,7 +253,7 @@ In Python:
     x is positive
     >>> 
     \end{lstlisting}
-    \item "and" instead of "&&". "or" instead of "||". For negation, statements like "a != b" still work, but "not a == b" is allowed too.
+    \item "and" instead of \&\&. "or" instead of $||$. For negation, statements like "a != b" still work, but "not a == b" is allowed too.
 \end{itemize}
 
 \section{Iteration}
