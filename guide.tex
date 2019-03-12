@@ -24,7 +24,9 @@
 
 This is a guide to introductory Python 3 intended for those with a C++ background. It reviews the differences between C++ and Python 3 in introductory concepts such as conditional statements, strings, and functions. It is intended to make our UC Davis Computer Science tutors more comfortable tutoring the introductory Python courses -- ECS 32A, 32B, and 36A -- newly offered by UC Davis, as our school has shifted from teaching C/C++ at the introductory level to teaching Python.
 
-\textbf{Want a short version of the major differences?} Besides syntactic differences, look at: // operator, ** operator, string immutability, range-based for loops, tuples, and dictionaries.
+\textbf{Want a short version of the major differences?} Then look at \hyperref[sec:general-differences]{General Differences}, the // and ** operators in \hyperref[sec:numbers-and-arithmetic]{Math}, the details on \hyperref[sec:strings-immutability]{String Immutability} and \hyperref[sec:range-based-for-loop]{Range-Based For Loops}, and \hyperref[sec:tuples]{Tuples} and \hyperref[sec:dictionaries]{Dictionaries}.
+
+See \href{https://github.com/aaronistheman/UCD-Intro-Python-Guide/commits/master}{here} for this guide's changelist.
 
 \section{(Quickly) Setting Up Python}
 \textbf{Don't have Python 3?} Here are two solutions:
@@ -67,6 +69,7 @@ This is a guide to introductory Python 3 intended for those with a C++ backgroun
 \end{itemize}
 
 \section{General Differences Between C++ and Python}
+\label{sec:general-differences}
 In Python:
 \begin{itemize}
     \item Lines don't end in semi-colons.
@@ -77,6 +80,7 @@ In Python:
 \end{itemize}
 
 \section{Numbers and Arithmetic}
+\label{sec:numbers-and-arithmetic}
 \begin{itemize}
     \item +, -, *, and \% are the same.
     \item Unlike in C++, / doesn't truncate in Python when both operands are integers. You must use // to cause truncation.
@@ -223,6 +227,7 @@ In Python:
     <class 'str'>
     \end{lstlisting}
     \item IMPORTANT: In Python, we call strings "immutable". This means that, unlike with a list, \textbf{you can't modify an individual element in a string}. You must instead use concatenation to create a new string.
+    \label{sec:strings-immutability}
     \begin{lstlisting}
     >>> mystr
     'aaron kaloti'
@@ -272,6 +277,7 @@ In Python:
     >>> 
     \end{lstlisting}
     \item Range-based for loop: for loop to iterate across a range of values (here, the variable \textbf{i} needn't be initialized prior):
+    \label{sec:range-based-for-loop}
     \begin{lstlisting}
     >>> for i in range(2,6):  # last value (6) isn't included
     ...     print(i)
@@ -346,6 +352,7 @@ In Python:
 \end{itemize}
 
 \section{Tuples}
+\label{sec:tuples}
 \begin{itemize}
     \item A tuple is basically a list, except each individual element is immutable.
     \item Define a tuple.
@@ -423,6 +430,7 @@ In Python:
 \end{itemize}
 
 \section{Dictionaries}
+\label{sec:dictionaries}
 \begin{itemize}
     \item Dictionaries are indexed by key and return a value.
     \begin{lstlisting}
